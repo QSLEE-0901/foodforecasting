@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Consumption Predictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2em 3em;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 1.2em;
+      font-weight: 500;
+      color: #555;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.4em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    button {
+      width: 100%;
+      margin-top: 2em;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 2em;
+      font-weight: bold;
+      color: #2d572c;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Food Consumption Predictor</h1>
+    <label for="income">Family Income ($):</label>
+    <input type="number" id="income" placeholder="e.g., 30" />
+
+    <label for="size">Family Size:</label>
+    <input type="number" id="size" placeholder="e.g., 4" />
+
+    <button onclick="predictFood()">Predict</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function predictFood() {
+      const income = parseFloat(document.getElementById('income').value);
+      const size = parseFloat(document.getElementById('size').value);
+      const output = document.getElementById('output');
+
+      if (isNaN(income) || isNaN(size)) {
+        output.innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      const food = -1.118 + 0.148 * income + 0.7931 * size;
+      output.innerText = `Predicted Food Consumption: $${food.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
+
+
